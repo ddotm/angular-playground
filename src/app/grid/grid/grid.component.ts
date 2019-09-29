@@ -1,16 +1,19 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  OnInit
+  OnInit,
+  ViewChild
 } from '@angular/core';
 import {GridConfig} from './grid-config';
 import {
   BehaviorSubject,
   combineLatest,
-  Observable
+  Observable,
+  of
 } from 'rxjs';
 import {GridDataService} from './grid-data.service';
 import {map} from 'rxjs/operators';
+import {AgGridAngular} from 'ag-grid-angular';
 
 @Component({
   selector: 'app-grid',
@@ -19,12 +22,16 @@ import {map} from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GridComponent implements OnInit {
+  @ViewChild('agGrid', {static: false}) agGrid: AgGridAngular;
+
   private gridConfig: GridConfig = new GridConfig();
   private gridSubject: BehaviorSubject<GridConfig> = new BehaviorSubject<GridConfig>(null);
   public gridConfig$: Observable<GridConfig> = this.gridSubject.asObservable();
-  public grid$: Observable<{rowData: Array<any>, gridConfig: GridConfig}>;
+  public grid$: Observable<{ rowData: Array<any>, gridConfig: GridConfig }>;
 
   public gridServiceData$: Observable<any>;
+
+  public display$: Observable<string> = of('');
 
   constructor(private gridDataService: GridDataService) {
   }
@@ -44,7 +51,13 @@ export class GridComponent implements OnInit {
           gridConfig
         };
       }));
+  }
 
+  getSelectedRows() {
+    const selectedNodes = this.agGrid.api.getSelectedNodes();
+    const selectedData = selectedNodes.map( node => node.data );
+    const selectedDataStringPresentation = selectedData.map( node => node.make + ' ' + node.model).join(', ');
+    this.display$ = of(selectedDataStringPresentation);
   }
 
 }
