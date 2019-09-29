@@ -4,6 +4,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {NavbarModule} from 'navbar';
 import {GridModule} from './grid/grid.module';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -11,6 +12,7 @@ import {GridModule} from './grid/grid.module';
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     NavbarModule,
     GridModule

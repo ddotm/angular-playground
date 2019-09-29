@@ -1,1 +1,8 @@
-<p>grid works!</p>
+<div *ngIf="grid$ | async as grid">
+<!--  <div>{{grid | json}}</div>-->
+  <ag-grid-angular style="width: 500px; height: 500px;"
+                   class="ag-theme-balham"
+                   [rowData]="grid.rowData"
+                   [columnDefs]="grid.columnDefs">
+  </ag-grid-angular>
+</div>
