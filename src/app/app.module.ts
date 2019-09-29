@@ -5,6 +5,7 @@ import {AppComponent} from './app.component';
 import {NavbarModule} from 'navbar';
 import {GridModule} from './grid/grid.module';
 import {CommonModule} from '@angular/common';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import {CommonModule} from '@angular/common';
   imports: [
     BrowserModule,
     CommonModule,
+    HttpClientModule,
     AppRoutingModule,
     NavbarModule,
     GridModule

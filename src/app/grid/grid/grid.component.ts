@@ -6,8 +6,11 @@ import {
 import {GridConfig} from './grid-config';
 import {
   BehaviorSubject,
+  combineLatest,
   Observable
 } from 'rxjs';
+import {GridDataService} from './grid-data.service';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-grid',
@@ -18,13 +21,30 @@ import {
 export class GridComponent implements OnInit {
   private gridConfig: GridConfig = new GridConfig();
   private gridSubject: BehaviorSubject<GridConfig> = new BehaviorSubject<GridConfig>(null);
-  public grid$: Observable<GridConfig> = this.gridSubject.asObservable();
+  public gridConfig$: Observable<GridConfig> = this.gridSubject.asObservable();
+  public grid$;
 
-  constructor() {
+  public gridServiceData$: Observable<any>;
+
+  constructor(private gridDataService: GridDataService) {
   }
 
   ngOnInit() {
     this.gridSubject.next(this.gridConfig);
+    this.gridServiceData$ = this.gridDataService.get();
+
+    this.grid$ = combineLatest([
+        this.gridServiceData$,
+        this.gridConfig$
+      ]
+    )
+      .pipe(map(([rowData, gridConfig]) => {
+        return {
+          rowData,
+          gridConfig
+        };
+      }));
+
   }
 
 }
