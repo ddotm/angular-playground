@@ -1,12 +1,13 @@
 export class GridConfig {
-  // public gridOptions: GridOptions = new GridOptions();
+  public rowSelection: string = 'multiple';
 
   public columnDefs: Array<any> = [
     {
       headerName: 'Make',
       field: 'make',
       sortable: true,
-      filter: true
+      filter: true,
+      checkboxSelection: true
     },
     {
       headerName: 'Model',
@@ -42,8 +43,9 @@ export class GridConfig {
 }
 
 export interface IColumnDef {
-  headerName: string; // header text for the column
-  field: string;      // property column binds to in the rowData object
-  sortable: boolean;  // enable/disable sorting
-  filter: boolean;    // enable/disable filtering
+  headerName: string;          // header text for the column
+  field: string;               // property column binds to in the rowData object
+  sortable: boolean;           // enable/disable sorting
+  filter: boolean;             // enable/disable filtering
+  checkboxSelection: boolean;  // enable/disable row selection
 }

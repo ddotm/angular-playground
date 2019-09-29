@@ -22,7 +22,7 @@ export class GridComponent implements OnInit {
   private gridConfig: GridConfig = new GridConfig();
   private gridSubject: BehaviorSubject<GridConfig> = new BehaviorSubject<GridConfig>(null);
   public gridConfig$: Observable<GridConfig> = this.gridSubject.asObservable();
-  public grid$;
+  public grid$: Observable<{rowData: Array<any>, gridConfig: GridConfig}>;
 
   public gridServiceData$: Observable<any>;
 
