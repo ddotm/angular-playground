@@ -1,7 +1,9 @@
 <div *ngIf="grid$ | async as grid">
-<!--  <div>{{grid | json}}</div>-->
+  <!--  <div>{{grid | json}}</div>-->
   <div>{{display$ | async | json}}</div>
+
   <button class="btn btn-primary" (click)="getSelectedRows()">Get Selected Rows</button>
+
   <ag-grid-angular style="width: 500px; height: 500px;"
                    #agGrid
                    class="ag-theme-balham"
