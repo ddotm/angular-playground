@@ -5,17 +5,20 @@ export class GridConfig {
     {
       headerName: 'Make',
       field: 'make',
-      sortable: true
+      sortable: true,
+      filter: true
     },
     {
       headerName: 'Model',
       field: 'model',
-      sortable: true
+      sortable: true,
+      filter: true
     },
     {
       headerName: 'Price',
       field: 'price',
-      sortable: true
+      sortable: true,
+      filter: true
     }
   ];
 
@@ -41,5 +44,6 @@ export class GridConfig {
 export interface IColumnDef {
   headerName: string; // header text for the column
   field: string;      // property column binds to in the rowData object
-  sortable: boolean;
+  sortable: boolean;  // enable/disable sorting
+  filter: boolean;    // enable/disable filtering
 }
