@@ -1,19 +1,10 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnInit,
-  ViewChild
-} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit, ViewChild} from '@angular/core';
 import {GridConfig} from './grid-config';
-import {
-  BehaviorSubject,
-  combineLatest,
-  Observable,
-  of
-} from 'rxjs';
+import {BehaviorSubject, combineLatest, Observable, of} from 'rxjs';
 import {GridDataService} from './grid-data.service';
 import {map} from 'rxjs/operators';
 import {AgGridAngular} from 'ag-grid-angular';
+import {GridData} from '../../models/grid-data';
 
 @Component({
   selector: 'app-grid',
@@ -27,11 +18,11 @@ export class GridComponent implements OnInit {
   private gridConfig: GridConfig = new GridConfig();
   private gridSubject: BehaviorSubject<GridConfig> = new BehaviorSubject<GridConfig>(null);
   public gridConfig$: Observable<GridConfig> = this.gridSubject.asObservable();
-  public grid$: Observable<{ rowData: Array<any>, gridConfig: GridConfig }>;
+  public grid$: Observable<{ rowData: Array<GridData>, gridConfig: GridConfig }>;
 
   public gridServiceData$: Observable<any>;
 
-  public display$: Observable<string> = of('');
+  public display$: Observable<string>;
 
   constructor(private gridDataService: GridDataService) {
   }
@@ -39,6 +30,7 @@ export class GridComponent implements OnInit {
   ngOnInit() {
     this.gridSubject.next(this.gridConfig);
     this.gridServiceData$ = this.gridDataService.get();
+    this.display$ = of('');
 
     this.grid$ = combineLatest([
         this.gridServiceData$,
@@ -55,8 +47,9 @@ export class GridComponent implements OnInit {
 
   getSelectedRows() {
     const selectedNodes = this.agGrid.api.getSelectedNodes();
-    const selectedData = selectedNodes.map( node => node.data );
-    const selectedDataStringPresentation = selectedData.map( node => node.make + ' ' + node.model).join(', ');
+    const selectedData = selectedNodes.map(node => node.data);
+    const selectedDataStringPresentation = selectedData.map(node => node.make + ' ' + node.model)
+                                                       .join(', ');
     this.display$ = of(selectedDataStringPresentation);
   }
 
