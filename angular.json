@@ -71,7 +71,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ng-playground:build"
+            "browserTarget": "ng-playground:build",
+            "port": 4201
           },
           "configurations": {
             "production": {
@@ -163,6 +164,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "ng-playground"
 }
