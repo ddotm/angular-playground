@@ -44,18 +44,22 @@ export class GridDataService {
       }),
       new GridData({
         id: 5,
-        date: new Date('2019-01-05:00:00:00')
+        date: null //new Date('2019-01-04:00:00:00')
       }),
       new GridData({
         id: 6,
-        date: new Date('2019-01-06:00:00:00')
+        date: new Date('2019-01-05:00:00:00')
       }),
       new GridData({
         id: 7,
-        date: new Date('2019-01-07:00:00:00')
+        date: new Date('2019-01-06:00:00:00')
       }),
       new GridData({
         id: 8,
+        date: new Date('2019-01-07:00:00:00')
+      }),
+      new GridData({
+        id: 9,
         date: new Date('2019-01-08:00:00:00'),
         country: 'United States',
         city: 'Los Angeles',
