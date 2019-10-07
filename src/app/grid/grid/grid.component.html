@@ -7,8 +7,8 @@
   <ag-grid-angular style="width: 95%; height: 500px;"
                    #agGrid
                    class="ag-theme-balham"
-                   [rowData]="grid.rowData"
                    [columnDefs]="grid.gridConfig.columnDefs"
-                   [rowSelection]="grid.gridConfig.rowSelection">
-  </ag-grid-angular>
+                   [rowSelection]="grid.gridConfig.rowSelection"
+                   [rowDragManaged]="grid.gridConfig.rowDragManaged"
+                   [rowData]="grid.rowData"></ag-grid-angular>
 </div>

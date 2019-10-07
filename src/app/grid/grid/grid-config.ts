@@ -2,6 +2,7 @@ import {GridData, GridDataPropNames} from '../../models/grid-data';
 
 export class GridConfig {
   public rowSelection: string = 'multiple';
+  public rowDragManaged: boolean = true;
   public columnDefs: Array<IColumnDef> = null;
 
   constructor() {
@@ -13,7 +14,8 @@ export class GridConfig {
         field: GridDataPropNames.date,
         sortable: false,
         filter: true,
-        editable: false
+        editable: false,
+        rowDrag: true,
       },
       {
         headerName: '',
@@ -105,10 +107,11 @@ export class GridConfig {
 
 export interface IColumnDef {
   headerName: string;           // header text for the column
-  width?: number;
+  width?: number;               // width of the column
   field: string;                // property column binds to in the rowData object
   sortable?: boolean;           // enable/disable sorting
   filter?: boolean;             // enable/disable filtering
   checkboxSelection?: boolean;  // enable/disable row selection
   editable?: boolean;           // enable/disable editable cells
+  rowDrag?: boolean;            // enable/disable row dragging
 }
