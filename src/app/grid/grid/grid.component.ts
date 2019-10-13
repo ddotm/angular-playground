@@ -63,10 +63,6 @@ export class GridComponent implements OnInit {
     this.gridColumnApi = params.columnApi;
   }
 
-  public getRowNodeId(data) {
-    return data.id;
-  }
-
   public onRowDragMove(event) {
     this.moveGridRows(event);
   }

@@ -7,14 +7,13 @@
   </button>
 
   <ag-grid-angular style="width: 95%; height: 500px;"
-                   #agGrid
                    class="ag-theme-balham"
                    [columnDefs]="grid.gridConfig.columnDefs"
                    [rowSelection]="grid.gridConfig.rowSelection"
                    [rowDragManaged]="grid.gridConfig.rowDragManaged"
                    [animateRows]="grid.gridConfig.animateRows"
                    [deltaRowDataMode]="grid.gridConfig.deltaRowDataMode"
-                   [getRowNodeId]="getRowNodeId"
+                   [getRowNodeId]="grid.gridConfig.getRowNodeId"
                    [rowData]="grid.rowData"
                    (gridReady)="onGridReady($event)"
                    (rowDragEnd)="rowDragEnd($event)"></ag-grid-angular>

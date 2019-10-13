@@ -5,7 +5,11 @@ export class GridConfig {
   public rowDragManaged: boolean = false;
   public animateRows: boolean = true;
   public deltaRowDataMode: boolean = true;
+  public rowNodeId: string = 'id';
   public columnDefs: Array<IColumnDef> = null;
+  public getRowNodeId = (data) => {
+    return data[this.rowNodeId];
+  };
 
   constructor() {
     const gridData = new GridData();
@@ -17,7 +21,7 @@ export class GridConfig {
         sortable: false,
         filter: true,
         editable: false,
-        rowDrag: true,
+        rowDrag: true
       },
       {
         headerName: '',
