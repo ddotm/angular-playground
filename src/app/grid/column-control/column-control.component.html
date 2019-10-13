@@ -1,0 +1,14 @@
+<div *ngIf="formGroup$ | async as formGroup">
+    <form  class="form-inline" [formGroup]="formGroup"
+         *ngFor="let formControl of formGroup.controls | keyvalue">
+      <div class="form-check form-check-inline">
+        <input [formControlName]="formControl.key"
+               class="form-check-input"
+               type="checkbox"
+               id="checkbox{{formControl.key}}"
+               (change)="setVisibility(formControl.key)">
+        <label class="form-check-label"
+               for="checkbox{{formControl.key}}">{{getLabel(formControl.key)}}</label>
+      </div>
+    </form>
+</div>

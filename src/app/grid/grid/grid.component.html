@@ -1,20 +1,29 @@
 <div *ngIf="grid$ | async as grid">
-  <!--  <div>{{grid | json}}</div>-->
+
   <div>{{display$ | async | json}}</div>
 
   <button class="btn btn-primary"
           (click)="getSelectedRows()">Get Selected Rows
   </button>
+  <div class="row">
 
-  <ag-grid-angular style="width: 95%; height: 500px;"
-                   class="ag-theme-balham"
-                   [columnDefs]="grid.gridConfig.columnDefs"
-                   [rowSelection]="grid.gridConfig.rowSelection"
-                   [rowDragManaged]="grid.gridConfig.rowDragManaged"
-                   [animateRows]="grid.gridConfig.animateRows"
-                   [deltaRowDataMode]="grid.gridConfig.deltaRowDataMode"
-                   [getRowNodeId]="grid.gridConfig.getRowNodeId"
-                   [rowData]="grid.rowData"
-                   (gridReady)="onGridReady($event)"
-                   (rowDragEnd)="rowDragEnd($event)"></ag-grid-angular>
+    <div class="col-11">
+      <ag-grid-angular style="width: 95%; height: 500px;"
+                       class="ag-theme-balham"
+                       [columnDefs]="grid.gridConfig.columnDefs"
+                       [rowSelection]="grid.gridConfig.rowSelection"
+                       [rowDragManaged]="grid.gridConfig.rowDragManaged"
+                       [animateRows]="grid.gridConfig.animateRows"
+                       [deltaRowDataMode]="grid.gridConfig.deltaRowDataMode"
+                       [getRowNodeId]="grid.gridConfig.getRowNodeId"
+                       [rowData]="grid.rowData"
+                       (gridReady)="onGridReady($event)"
+                       (rowDragEnd)="rowDragEnd($event)"></ag-grid-angular>
+    </div>
+
+    <div class="col-1">
+      <app-column-control [columnApi]="gridColumnApi$ | async"
+                          [gridConfig]="grid.gridConfig"></app-column-control>
+    </div>
+  </div>
 </div>

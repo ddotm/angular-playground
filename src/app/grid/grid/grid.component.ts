@@ -16,6 +16,7 @@ import {ColumnApi, GridApi, RowNode} from 'ag-grid-community';
 export class GridComponent implements OnInit {
   private gridApi: GridApi;
   private gridColumnApi: ColumnApi;
+  public gridColumnApi$: Observable<ColumnApi>;
 
   private gridConfig: GridConfig = new GridConfig();
   private gridConfigSubject: BehaviorSubject<GridConfig> = new BehaviorSubject<GridConfig>(null);
@@ -61,6 +62,7 @@ export class GridComponent implements OnInit {
   public onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
+    this.gridColumnApi$ = of(params.columnApi);
   }
 
   public onRowDragMove(event) {

@@ -16,6 +16,7 @@ export class GridConfig {
     const fieldProps = gridData.getFieldProps();
     this.columnDefs = [
       {
+        colId: GridDataPropNames.date,
         headerName: '',
         field: GridDataPropNames.date,
         sortable: false,
@@ -24,6 +25,7 @@ export class GridConfig {
         rowDrag: true
       },
       {
+        colId: 'check',
         headerName: '',
         width: 40,
         field: null,
@@ -33,6 +35,7 @@ export class GridConfig {
         editable: false
       },
       {
+        colId: GridDataPropNames.country,
         headerName: fieldProps[GridDataPropNames.country].label,
         field: GridDataPropNames.country,
         sortable: true,
@@ -40,6 +43,7 @@ export class GridConfig {
         editable: true
       },
       {
+        colId: GridDataPropNames.city,
         headerName: fieldProps[GridDataPropNames.city].label,
         field: GridDataPropNames.city,
         sortable: true,
@@ -47,6 +51,7 @@ export class GridConfig {
         editable: true
       },
       {
+        colId: GridDataPropNames.venue,
         headerName: fieldProps[GridDataPropNames.venue].label,
         field: GridDataPropNames.venue,
         sortable: true,
@@ -54,6 +59,7 @@ export class GridConfig {
         editable: true
       },
       {
+        colId: GridDataPropNames.stage,
         headerName: fieldProps[GridDataPropNames.stage].label,
         field: GridDataPropNames.stage,
         sortable: true,
@@ -61,6 +67,7 @@ export class GridConfig {
         editable: true
       },
       {
+        colId: GridDataPropNames.capacity,
         headerName: fieldProps[GridDataPropNames.capacity].label,
         width: 100,
         field: GridDataPropNames.capacity,
@@ -69,6 +76,7 @@ export class GridConfig {
         editable: true
       },
       {
+        colId: GridDataPropNames.buildingCapability,
         headerName: fieldProps[GridDataPropNames.buildingCapability].label,
         width: 100,
         field: GridDataPropNames.buildingCapability,
@@ -77,6 +85,7 @@ export class GridConfig {
         editable: true
       },
       {
+        colId: GridDataPropNames.artistFee,
         headerName: fieldProps[GridDataPropNames.artistFee].label,
         width: 100,
         field: GridDataPropNames.artistFee,
@@ -85,6 +94,7 @@ export class GridConfig {
         editable: true
       },
       {
+        colId: GridDataPropNames.productionFee,
         headerName: fieldProps[GridDataPropNames.productionFee].label,
         width: 100,
         field: GridDataPropNames.productionFee,
@@ -93,6 +103,7 @@ export class GridConfig {
         editable: true
       },
       {
+        colId: GridDataPropNames.bonuses,
         headerName: fieldProps[GridDataPropNames.bonuses].label,
         field: GridDataPropNames.bonuses,
         sortable: true,
@@ -100,6 +111,7 @@ export class GridConfig {
         editable: true
       },
       {
+        colId: GridDataPropNames.status,
         headerName: fieldProps[GridDataPropNames.status].label,
         field: GridDataPropNames.status,
         sortable: true,
@@ -108,10 +120,10 @@ export class GridConfig {
       }
     ];
   }
-
 }
 
 export interface IColumnDef {
+  colId: string;                   // unique column identifier
   headerName: string;           // header text for the column
   width?: number;               // width of the column
   field: string;                // property column binds to in the rowData object
