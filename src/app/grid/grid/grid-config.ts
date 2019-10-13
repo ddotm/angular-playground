@@ -2,7 +2,9 @@ import {GridData, GridDataPropNames} from '../../models/grid-data';
 
 export class GridConfig {
   public rowSelection: string = 'multiple';
-  public rowDragManaged: boolean = true;
+  public rowDragManaged: boolean = false;
+  public animateRows: boolean = true;
+  public deltaRowDataMode: boolean = true;
   public columnDefs: Array<IColumnDef> = null;
 
   constructor() {

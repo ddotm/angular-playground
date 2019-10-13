@@ -2,7 +2,9 @@
   <!--  <div>{{grid | json}}</div>-->
   <div>{{display$ | async | json}}</div>
 
-  <button class="btn btn-primary" (click)="getSelectedRows()">Get Selected Rows</button>
+  <button class="btn btn-primary"
+          (click)="getSelectedRows()">Get Selected Rows
+  </button>
 
   <ag-grid-angular style="width: 95%; height: 500px;"
                    #agGrid
@@ -10,5 +12,10 @@
                    [columnDefs]="grid.gridConfig.columnDefs"
                    [rowSelection]="grid.gridConfig.rowSelection"
                    [rowDragManaged]="grid.gridConfig.rowDragManaged"
-                   [rowData]="grid.rowData"></ag-grid-angular>
+                   [animateRows]="grid.gridConfig.animateRows"
+                   [deltaRowDataMode]="grid.gridConfig.deltaRowDataMode"
+                   [getRowNodeId]="getRowNodeId"
+                   [rowData]="grid.rowData"
+                   (gridReady)="onGridReady($event)"
+                   (rowDragEnd)="rowDragEnd($event)"></ag-grid-angular>
 </div>
