@@ -72,6 +72,7 @@ export class GridDataService {
     const daysWithData = _.map(gridData, 'date');
     console.log(daysWithData);
     const twoDigitMonth = month < 10 ? `0${month}` : `${month}`;
+    let fakeId = -1;
     for (let i: number = 1; i <= daysInMonth; i++) {
       const twoDigitDay = i < 10 ? `0${i}` : `${i}`;
       const date = new Date(`${year}-${twoDigitMonth}-${twoDigitDay}:00:00:00`);
@@ -79,7 +80,7 @@ export class GridDataService {
         return _.isEqual(date, dayWithData);
       })) {
         gridData.push(new GridData({
-          id: 0,
+          id: fakeId--,
           date: date
         }));
       }
