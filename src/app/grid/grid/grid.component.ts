@@ -58,7 +58,7 @@ export class GridComponent implements OnInit {
   getSelectedRows() {
     const selectedNodes: Array<RowNode> = this.gridApi.getSelectedNodes();
     const selectedData: Array<GridData> = _.map(selectedNodes, 'data');
-    const selectedDataStringPresentation: string = _.join(_.map(selectedData, (node: GridData) => node.date + ' ' + node.city + ' ' + node.status + ' ' + node.statusId), ' | ');
+    const selectedDataStringPresentation: string = _.join(_.map(selectedData, (node: GridData) => node.date + ' ' + node.city + '. Status: ' + node.status), ' | ');
     this.display$ = of(selectedDataStringPresentation);
   }
 
@@ -77,22 +77,27 @@ export class GridComponent implements OnInit {
   }
 
   private moveGridRows(event) {
+    // If overNode has data
+    //    node Date set to overNode date and render as an icon
+    //    If node's old date has no rows, generate an empty row for the node date
+    // If overNode has NO data
+    //    If node's old date has no rows, set overNode date to node date
+    //    Otherwise, delete overNode
     const movingNode = event.node;
     const overNode = event.overNode;
     const rowNeedsToMove: boolean = movingNode !== overNode;
-    if (rowNeedsToMove) {
-      const movingData = movingNode.data;
-      const overData = overNode.data;
-      const fromIndex = this.rowData.indexOf(movingData);
-      const toIndex = this.rowData.indexOf(overData);
-      const newStore = this.rowData.slice();
-      this.moveInArray(newStore, fromIndex, toIndex);
-      this.rowData = newStore;
-      //this.gridServiceData$ = of(this.rowData);
-      this.gridApi.setRowData(newStore);
-      movingNode.setDataValue(GridDataPropNames.date, overNode.data[GridDataPropNames.date]);
-      // this.gridApi.clearFocusedCell();
+    if (!rowNeedsToMove) {
+      return;
     }
+    const nodeData = movingNode.data;
+    const overNodeData = overNode.data;
+    const fromIndex = _.indexOf(this.rowData, nodeData);
+    const toIndex = _.indexOf(this.rowData, overNodeData);
+    const newStore = this.rowData.slice();
+    this.moveInArray(newStore, fromIndex, toIndex);
+    this.rowData = newStore;
+    this.gridApi.setRowData(newStore);
+    movingNode.setDataValue(GridDataPropNames.date, overNode.data[GridDataPropNames.date]);
   }
 
   private moveInArray(arr, fromIndex, toIndex) {
