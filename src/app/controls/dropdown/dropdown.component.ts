@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {GridDataPropNames} from '../../models/grid-data';
+import _ from 'lodash';
 
 @Component({
   selector: 'app-dropdown',
@@ -9,7 +10,7 @@ import {GridDataPropNames} from '../../models/grid-data';
 export class DropdownComponent implements OnInit {
   public options: Array<{ id: number, name: string }> = null;
 
-  public selectedOption: number = null;
+  public selectedOption: string = null;
 
   public params: any = null;
 
@@ -18,13 +19,15 @@ export class DropdownComponent implements OnInit {
 
   agInit(params: any): void {
     this.params = params;
-    this.options = [{id: 1, name: 'confirmed'}, {id: 2, name: 'cancelled'}, {id: 3, name: 'pending'}];
+    this.options = [{id: 1, name: 'confirmed'}, {id: 2, name: 'cancelled'}, {id: 3, name: 'pending'}, {id: 4, name: 'hold'}];
+    this.selectedOption = this.params.data[GridDataPropNames.statusId];
   }
 
   valueChange($event) {
-    console.log($event);
-    this.params.node.setDataValue(GridDataPropNames.statusId, 2);
-    // this.params.node.setDataValue(GridDataPropNames.status, 'cancelled');
+    const selectedId: number = _.parseInt(this.selectedOption);
+    this.params.node.setDataValue(GridDataPropNames.statusId, selectedId);
+    const selectedOption = _.find(this.options, {id: selectedId});
+    this.params.data[GridDataPropNames.status] = selectedOption.name;
   }
 
   ngOnInit() {

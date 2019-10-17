@@ -16,5 +16,7 @@ export interface IColumnDef {
   // Class: Direct reference to a cell renderer component.
   // Function: A function that returns either an HTML string or DOM element for display.
   cellRenderer?: any;
-  cellRendererFramework?: any; // for custom renderers that are components
+  // for custom renderers that are components
+  // more info: https://www.ag-grid.com/javascript-grid-cell-rendering/angular.php
+  cellRendererFramework?: any;
 }
