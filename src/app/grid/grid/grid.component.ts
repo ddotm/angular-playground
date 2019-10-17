@@ -4,7 +4,7 @@ import {GridConfig} from './grid-config';
 import {BehaviorSubject, combineLatest, Observable, of} from 'rxjs';
 import {GridDataService} from './grid-data.service';
 import {map} from 'rxjs/operators';
-import {GridData} from '../../models/grid-data';
+import {GridData, GridDataPropNames} from '../../models/grid-data';
 import {ColumnApi, GridApi, RowNode} from 'ag-grid-community';
 
 @Component({
@@ -87,6 +87,7 @@ export class GridComponent implements OnInit {
       this.rowData = newStore;
       //this.gridServiceData$ = of(this.rowData);
       this.gridApi.setRowData(newStore);
+      movingNode.setDataValue(GridDataPropNames.date, overNode.data[GridDataPropNames.date]);
       this.gridApi.clearFocusedCell();
     }
   }
