@@ -89,8 +89,21 @@ export class GridComponent implements OnInit {
     if (!rowNeedsToMove) {
       return;
     }
+
     const nodeData = movingNode.data;
+    const nodeHasData: boolean = this.nodeHasData(nodeData);
+    const nodeDate = nodeData[GridDataPropNames.date];
+    const nodeDateCount = _.size(_.filter(this.rowData, (row: GridData) => {
+      _.isEqual(row[GridDataPropNames.date], nodeDate);
+    }));
+
     const overNodeData = overNode.data;
+    const overNodeHasData: boolean = this.nodeHasData(overNodeData);
+    const overNodeDate = overNodeData[GridDataPropNames.date];
+    const overNodeDateCount = _.size(_.filter(this.rowData, (row: GridData) => {
+      _.isEqual(row[GridDataPropNames.date], overNodeDate);
+    }));
+
     const fromIndex = _.indexOf(this.rowData, nodeData);
     const toIndex = _.indexOf(this.rowData, overNodeData);
     const newStore = this.rowData.slice();
@@ -98,6 +111,10 @@ export class GridComponent implements OnInit {
     this.rowData = newStore;
     this.gridApi.setRowData(newStore);
     movingNode.setDataValue(GridDataPropNames.date, overNode.data[GridDataPropNames.date]);
+  }
+
+  private nodeHasData(data: GridData): boolean {
+    return !_.isEmpty(data.city);
   }
 
   private moveInArray(arr, fromIndex, toIndex) {
