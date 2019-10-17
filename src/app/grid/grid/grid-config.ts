@@ -1,13 +1,24 @@
 import {GridData, GridDataPropNames} from '../../models/grid-data';
 import {ValueGetterParams} from 'ag-grid-community';
 import {ColValueFormatters} from '../col-value-formatters';
+import {RowSelection} from '../enums/row-selection';
 
-export class GridConfig {
-  public rowSelection: string = 'multiple';
+interface IGridConfig {
+  rowSelection: string;
+  rowDragManaged: boolean;
+  animateRows: boolean;
+  deltaRowDataMode: boolean;
+  rowNodeId: string;
+  columnDefs: Array<IColumnDef>;
+  getRowNodeId: (data) => any;
+}
+
+export class GridConfig implements IGridConfig {
+  public rowSelection: string = RowSelection.multiple;
   public rowDragManaged: boolean = false;
   public animateRows: boolean = true;
   public deltaRowDataMode: boolean = true;
-  public rowNodeId: string = 'id';
+  public rowNodeId: string = GridDataPropNames.id;
   public columnDefs: Array<IColumnDef> = null;
   public getRowNodeId = (data): any => {
     return data[this.rowNodeId];
