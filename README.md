@@ -22,5 +22,22 @@ imports: [
 ```scss
 @import "~ag-grid-community/dist/styles/ag-grid.css";
 @import "~ag-grid-community/dist/styles/ag-theme-balham.css";
+//@import "~ag-grid-community/dist/styles/ag-theme-balham-dark.css";
+//@import "~ag-grid-community/dist/styles/ag-theme-blue.css";
+//@import "~ag-grid-community/dist/styles/ag-theme-dark.css";
+//@import "~ag-grid-community/dist/styles/ag-theme-fresh.css";
+//@import "~ag-grid-community/dist/styles/ag-theme-bootstrap.css";
+//@import "~ag-grid-community/dist/styles/ag-theme-material.css";
 ```
+##### Changing the theme
+Uncomment the desired theme.  
+Change the class to match the theme name 
+`<ag-grid-angular class="ag-theme-balham"`
+to
+`<ag-grid-angular class="ag-theme-balham-dark"`
 
+### ENTERPRISE
+npm install --save ag-grid-enterprise@latest -E 
+
+Add `import 'ag-grid-enterprise';` to the module with `import {AgGridModule} from 'ag-grid-angular';`
+ 

@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {AgGridModule} from 'ag-grid-angular';
+import 'ag-grid-enterprise';
 import {GridComponent} from './grid/grid.component';
 import {CommonModule} from '@angular/common';
 import {ColumnControlComponent} from './column-control/column-control.component';
