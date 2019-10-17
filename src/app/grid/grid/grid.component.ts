@@ -58,7 +58,7 @@ export class GridComponent implements OnInit {
   getSelectedRows() {
     const selectedNodes: Array<RowNode> = this.gridApi.getSelectedNodes();
     const selectedData: Array<GridData> = _.map(selectedNodes, 'data');
-    const selectedDataStringPresentation: string = _.join(_.map(selectedData, (node: GridData) => node.date + ' ' + node.city + ' ' + node.status), ' | ');
+    const selectedDataStringPresentation: string = _.join(_.map(selectedData, (node: GridData) => node.date + ' ' + node.city + ' ' + node.status + ' ' + node.statusId), ' | ');
     this.display$ = of(selectedDataStringPresentation);
   }
 

@@ -7,10 +7,12 @@ import {GridModule} from './grid/grid.module';
 import {CommonModule} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {DropdownComponent} from './controls/dropdown/dropdown.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DropdownComponent
   ],
   imports: [
     BrowserModule,
@@ -21,6 +23,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     ReactiveFormsModule,
     NavbarModule,
     GridModule
+  ],
+  entryComponents: [
+    DropdownComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

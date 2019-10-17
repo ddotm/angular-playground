@@ -11,4 +11,10 @@ export interface IColumnDef {
   editable?: boolean;           // enable/disable editable cells
   rowDrag?: boolean;            // enable/disable row dragging
   valueFormatter?: (params: ValueGetterParams) => any; // Function or expression. Formats the value for display.
+  // undefined / null: Grid renders the value as a string.
+  // String: The name of a cell renderer component.
+  // Class: Direct reference to a cell renderer component.
+  // Function: A function that returns either an HTML string or DOM element for display.
+  cellRenderer?: any;
+  cellRendererFramework?: any; // for custom renderers that are components
 }

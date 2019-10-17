@@ -5,6 +5,7 @@ import {RowSelection} from './enums/row-selection';
 import {GridData, GridDataPropNames} from '../models/grid-data';
 import {IColumnDef} from '../models/icol-def';
 import {ColValueFormatters} from './col-value-formatters';
+import {DropdownComponent} from '../controls/dropdown/dropdown.component';
 
 @Injectable({
   providedIn: 'root'
@@ -133,12 +134,13 @@ export class GridService {
         editable: true
       },
       {
-        colId: GridDataPropNames.status,
-        headerName: fieldProps[GridDataPropNames.status].label,
-        field: GridDataPropNames.status,
+        colId: GridDataPropNames.statusId,
+        headerName: fieldProps[GridDataPropNames.statusId].label,
+        field: GridDataPropNames.statusId,
         sortable: true,
         filter: true,
-        editable: true
+        editable: true,
+        cellRendererFramework: DropdownComponent
       }
     ];
 

@@ -15,6 +15,7 @@ export enum GridDataPropNames {
   artistFee = 'artistFee',
   productionFee = 'productionFee',
   bonuses = 'bonuses',
+  statusId = 'statusId',
   status = 'status',
 
   selected = 'selected'
@@ -32,6 +33,7 @@ export interface IGridData {
   artistFee?: number;
   productionFee?: number;
   bonuses?: number;
+  statusId?: number;
   status?: string;
 
   selected?: boolean;
@@ -49,6 +51,7 @@ export class GridData implements IModel, IGridData {
   public artistFee?: number = null;
   public productionFee?: number = null;
   public bonuses?: number = null;
+  public statusId?: number = null;
   public status?: string = null;
 
   public selected?: boolean = false;
@@ -71,7 +74,7 @@ export class GridData implements IModel, IGridData {
     fieldProps[GridDataPropNames.artistFee] = new FieldProps({label: 'Artist Fee'});
     fieldProps[GridDataPropNames.productionFee] = new FieldProps({label: 'Production Fee'});
     fieldProps[GridDataPropNames.bonuses] = new FieldProps({label: 'Bonuses'});
-    fieldProps[GridDataPropNames.status] = new FieldProps({label: 'Status'});
+    fieldProps[GridDataPropNames.statusId] = new FieldProps({label: 'Status'});
 
     _.forEach(_.keys(GridDataPropNames), (key: string) => {
       if (_.isEmpty(fieldProps[key])) {

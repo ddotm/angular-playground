@@ -19,6 +19,7 @@ export class GridDataService {
         city: 'New York',
         venue: 'Carnegie Hall',
         capacity: 3000,
+        statusId: 1,
         status: 'confirmed'
       }),
       new GridData({
@@ -28,6 +29,7 @@ export class GridDataService {
         city: 'New York',
         venue: 'Carnegie Hall',
         capacity: 3000,
+        statusId: 3,
         status: 'pending'
       }),
       new GridData({
@@ -37,6 +39,7 @@ export class GridDataService {
         city: 'New York',
         venue: 'Carnegie Hall',
         capacity: 3000,
+        statusId: 3,
         status: 'pending'
       }),
       new GridData({
@@ -46,6 +49,7 @@ export class GridDataService {
         city: 'Los Angeles',
         venue: 'The Greek Theater',
         capacity: 5870,
+        statusId: 1,
         status: 'confirmed'
       }),
       new GridData({
@@ -55,7 +59,8 @@ export class GridDataService {
         city: 'Los Angeles',
         venue: 'The Greek Theater',
         capacity: 5870,
-        status: 'confirmed'
+        statusId: 2,
+        status: 'cancelled'
       })
     ];
 
