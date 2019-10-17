@@ -36,6 +36,7 @@ export interface IGridData {
   statusId?: number;
   status?: string;
 
+  rowOrder?: number;
   selected?: boolean;
 }
 
@@ -54,6 +55,7 @@ export class GridData implements IModel, IGridData {
   public statusId?: number = null;
   public status?: string = null;
 
+  rowOrder?: number = null;
   public selected?: boolean = false;
 
   constructor(data?: IGridData) {
