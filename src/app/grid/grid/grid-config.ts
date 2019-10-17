@@ -1,4 +1,6 @@
 import {GridData, GridDataPropNames} from '../../models/grid-data';
+import {ValueGetterParams} from 'ag-grid-community';
+import {ColValueFormatters} from '../col-value-formatters';
 
 export class GridConfig {
   public rowSelection: string = 'multiple';
@@ -7,7 +9,7 @@ export class GridConfig {
   public deltaRowDataMode: boolean = true;
   public rowNodeId: string = 'id';
   public columnDefs: Array<IColumnDef> = null;
-  public getRowNodeId = (data) => {
+  public getRowNodeId = (data): any => {
     return data[this.rowNodeId];
   };
 
@@ -22,7 +24,8 @@ export class GridConfig {
         sortable: false,
         filter: true,
         editable: false,
-        rowDrag: true
+        rowDrag: true,
+        valueFormatter: ColValueFormatters.dateValueFormatter
       },
       {
         colId: 'check',
@@ -123,7 +126,7 @@ export class GridConfig {
 }
 
 export interface IColumnDef {
-  colId: string;                   // unique column identifier
+  colId: string;                // unique column identifier
   headerName: string;           // header text for the column
   width?: number;               // width of the column
   field: string;                // property column binds to in the rowData object
@@ -132,4 +135,5 @@ export interface IColumnDef {
   checkboxSelection?: boolean;  // enable/disable row selection
   editable?: boolean;           // enable/disable editable cells
   rowDrag?: boolean;            // enable/disable row dragging
+  valueFormatter?: (params: ValueGetterParams) => any; // Function or expression. Formats the value for display.
 }

@@ -88,7 +88,7 @@ export class GridComponent implements OnInit {
       //this.gridServiceData$ = of(this.rowData);
       this.gridApi.setRowData(newStore);
       movingNode.setDataValue(GridDataPropNames.date, overNode.data[GridDataPropNames.date]);
-      this.gridApi.clearFocusedCell();
+      // this.gridApi.clearFocusedCell();
     }
   }
 
