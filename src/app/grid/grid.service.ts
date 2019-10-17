@@ -128,6 +128,7 @@ export class GridService {
       {
         colId: GridDataPropNames.bonuses,
         headerName: fieldProps[GridDataPropNames.bonuses].label,
+        width: 100,
         field: GridDataPropNames.bonuses,
         sortable: true,
         filter: true,
