@@ -1,11 +1,12 @@
 import _ from 'lodash';
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {GridConfig} from './grid-config';
+import {GridConfig} from '../../models/grid-config';
 import {BehaviorSubject, combineLatest, Observable, of} from 'rxjs';
 import {GridDataService} from './grid-data.service';
 import {map} from 'rxjs/operators';
 import {GridData, GridDataPropNames} from '../../models/grid-data';
 import {ColumnApi, GridApi, RowNode} from 'ag-grid-community';
+import {GridService} from '../grid.service';
 
 @Component({
   selector: 'app-grid',
@@ -18,7 +19,7 @@ export class GridComponent implements OnInit {
   private gridColumnApi: ColumnApi;
   public gridColumnApi$: Observable<ColumnApi>;
 
-  private gridConfig: GridConfig = new GridConfig();
+  private gridConfig: GridConfig = null;
   private gridConfigSubject: BehaviorSubject<GridConfig> = new BehaviorSubject<GridConfig>(null);
   public gridConfig$: Observable<GridConfig> = this.gridConfigSubject.asObservable();
   public grid$: Observable<{ rowData: Array<GridData>, gridConfig: GridConfig }>;
@@ -29,10 +30,12 @@ export class GridComponent implements OnInit {
 
   private rowData: Array<GridData> = null;
 
-  constructor(private gridDataService: GridDataService) {
+  constructor(private gridDataService: GridDataService,
+              private gridService: GridService) {
   }
 
   ngOnInit() {
+    this.gridConfig = this.gridService.getGridConfig();
     this.gridConfigSubject.next(this.gridConfig);
     this.gridServiceData$ = this.gridDataService.get();
     this.display$ = of('');

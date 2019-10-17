@@ -2,9 +2,10 @@ import _ from 'lodash';
 import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {ColumnApi} from 'ag-grid-community';
 import {GridService} from '../grid.service';
-import {GridConfig, IColumnDef} from '../grid/grid-config';
+import {GridConfig} from '../../models/grid-config';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {Observable, of} from 'rxjs';
+import {IColumnDef} from '../../models/icol-def';
 
 @Component({
   selector: 'app-column-control',
