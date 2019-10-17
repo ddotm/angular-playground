@@ -6,6 +6,8 @@ export interface IGridConfig {
   animateRows: boolean;
   deltaRowDataMode: boolean;
   rowNodeId: string;
+  sideBar?: any;
+  frameworkComponents?: any;
   columnDefs: Array<IColumnDef>;
   getRowNodeId: (data) => any;
 }

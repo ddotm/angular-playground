@@ -10,6 +10,8 @@ export class GridConfig implements IGridConfig {
   public rowNodeId: string = null;
   public columnDefs: Array<IColumnDef> = new Array<IColumnDef>();
   public getRowNodeId: (data: any) => any;
+  public sideBar?: any;
+  public frameworkComponents?: any;
 
   constructor() {
   }

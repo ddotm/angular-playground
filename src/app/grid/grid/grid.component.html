@@ -7,7 +7,7 @@
   </button>
   <div class="row">
 
-    <div class="col-11">
+    <div class="col-12">
       <ag-grid-angular class="ag-theme-balham"
                        style="width: 100%; height: 800px;"
                        [columnDefs]="grid.gridConfig.columnDefs"
@@ -16,14 +16,16 @@
                        [animateRows]="grid.gridConfig.animateRows"
                        [deltaRowDataMode]="grid.gridConfig.deltaRowDataMode"
                        [getRowNodeId]="grid.gridConfig.getRowNodeId"
+                       [sideBar]="grid.gridConfig.sideBar"
+                       [frameworkComponents]="grid.gridConfig.frameworkComponents"
                        [rowData]="grid.rowData"
                        (gridReady)="onGridReady($event)"
                        (rowDragEnd)="rowDragEnd($event)"></ag-grid-angular>
     </div>
 
-    <div class="col-1">
-      <app-column-control [columnApi]="gridColumnApi$ | async"
-                          [gridConfig]="grid.gridConfig"></app-column-control>
-    </div>
+<!--    <div class="col-1">-->
+<!--      <app-column-control [columnApi]="gridColumnApi$ | async"-->
+<!--                          [gridConfig]="grid.gridConfig"></app-column-control>-->
+<!--    </div>-->
   </div>
 </div>

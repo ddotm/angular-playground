@@ -30,6 +30,25 @@ export class GridService {
     gridConfig.getRowNodeId = (data: any): any => {
       return data[gridConfig.rowNodeId];
     };
+    gridConfig.sideBar = {
+      toolPanels: [
+        {
+          id: 'columns',
+          labelDefault: 'Columns',
+          labelKey: 'columns',
+          iconKey: 'columns',
+          toolPanel: 'agColumnsToolPanel'
+        },
+        {
+          id: 'filters',
+          labelDefault: 'Filters',
+          labelKey: 'filters',
+          iconKey: 'filter',
+          toolPanel: 'agFiltersToolPanel'
+        }
+      ]
+    };
+
     return gridConfig;
   }
 
