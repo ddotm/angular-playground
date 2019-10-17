@@ -131,7 +131,16 @@ export class GridService {
         field: GridDataPropNames.bonuses,
         sortable: true,
         filter: true,
-        editable: true
+        editable: true,
+        cellRenderer: (params): string => {
+          const bonusAmt = params.data[GridDataPropNames.bonuses] || 0;
+          if (bonusAmt === 0) {
+            return `<span>---</span>`;
+          }
+          const numOfDollarSigns = bonusAmt / 1000;
+          const dollarSigns: string = numOfDollarSigns > 3 ? '$$$' : '$';
+          return `<span>${dollarSigns} ${bonusAmt}</span>`;
+        }
       },
       {
         colId: GridDataPropNames.statusId,
