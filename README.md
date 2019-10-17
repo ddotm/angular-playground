@@ -40,4 +40,13 @@ to
 npm install --save ag-grid-enterprise@latest -E 
 
 Add `import 'ag-grid-enterprise';` to the module with `import {AgGridModule} from 'ag-grid-angular';`
- 
+
+##### Incorporating Enterprise license
+In the module that imports AgGridModule and 'ag-grid-enterprise', add:
+```angular2
+import {LicenseManager} from 'ag-grid-enterprise';
+
+constructor() {
+LicenseManager.setLicenseKey('[ENTERPRISE_KEY]');
+}
+```
