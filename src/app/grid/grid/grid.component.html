@@ -19,6 +19,7 @@
                        [sideBar]="grid.gridConfig.sideBar"
                        [frameworkComponents]="grid.gridConfig.frameworkComponents"
                        [enableRangeSelection]="grid.gridConfig.enableRangeSelection"
+                       [suppressCopyRowsToClipboard]="grid.gridConfig.suppressCopyRowsToClipboard"
                        [rowData]="grid.rowData"
                        (gridReady)="onGridReady($event)"
                        (rowDragEnd)="rowDragEnd($event)"></ag-grid-angular>

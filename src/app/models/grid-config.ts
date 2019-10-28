@@ -13,8 +13,9 @@ export class GridConfig implements IGridConfig {
   public sideBar?: any = null;
   public frameworkComponents?: any = null;
   // Copy/Paste specific settings https://www.ag-grid.com/javascript-grid-clipboard/
-  public suppressClipboardPaste: boolean = false;
-  public enableRangeSelection: boolean = true;
+  public suppressClipboardPaste?: boolean = false;
+  public enableRangeSelection?: boolean = true;
+  public suppressCopyRowsToClipboard?: boolean = true;
 
   constructor() {
   }
