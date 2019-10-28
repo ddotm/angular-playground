@@ -10,4 +10,6 @@ export interface IGridConfig {
   frameworkComponents?: any;
   columnDefs: Array<IColumnDef>;
   getRowNodeId: (data) => any;
+  suppressClipboardPaste: boolean;
+  enableRangeSelection: boolean;
 }

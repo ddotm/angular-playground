@@ -10,8 +10,11 @@ export class GridConfig implements IGridConfig {
   public rowNodeId: string = null;
   public columnDefs: Array<IColumnDef> = new Array<IColumnDef>();
   public getRowNodeId: (data: any) => any;
-  public sideBar?: any;
-  public frameworkComponents?: any;
+  public sideBar?: any = null;
+  public frameworkComponents?: any = null;
+  // Copy/Paste specific settings https://www.ag-grid.com/javascript-grid-clipboard/
+  public suppressClipboardPaste: boolean = false;
+  public enableRangeSelection: boolean = true;
 
   constructor() {
   }
