@@ -153,11 +153,11 @@ export class GridService {
         filter: true,
         editable: true,
         cellRenderer: (params): string => {
-          const bonusAmt = params.data[GridDataPropNames.bonuses] || 0;
+          const bonusAmt: number = params.data[GridDataPropNames.bonuses] || 0;
           if (bonusAmt === 0) {
             return `<span>---</span>`;
           }
-          const numOfDollarSigns = bonusAmt / 1000;
+          const numOfDollarSigns: number = bonusAmt / 1000;
           const dollarSigns: string = numOfDollarSigns > 3 ? '$$$' : '$';
           return `<span>${dollarSigns} ${bonusAmt}</span>`;
         }
