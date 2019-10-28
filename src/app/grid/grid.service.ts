@@ -65,6 +65,7 @@ export class GridService {
         editable: false,
         rowDrag: true,
         pinned: 'left',
+        lockPinned: true,
         valueFormatter: ColValueFormatters.dateValueFormatter
       },
       {
@@ -76,7 +77,8 @@ export class GridService {
         filter: false,
         checkboxSelection: true,
         editable: false,
-        pinned: 'left'
+        pinned: 'left',
+        lockPinned: true
       },
       {
         colId: GridDataPropNames.itineraryStatusId,
@@ -85,6 +87,7 @@ export class GridService {
         sortable: true,
         filter: true,
         editable: true,
+        pinned: 'left',
         cellRendererFramework: DropdownComponent
       },
       {

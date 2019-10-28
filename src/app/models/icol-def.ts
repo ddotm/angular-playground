@@ -11,6 +11,7 @@ export interface IColumnDef {
   editable?: boolean;           // enable/disable editable cells
   rowDrag?: boolean;            // enable/disable row dragging
   pinned?: string;              // pins column, 'left' or 'right'
+  lockPinned?: boolean;         // locks pinned setting on the UI
   valueFormatter?: (params: ValueGetterParams) => any; // Function or expression. Formats the value for display.
   // undefined / null: Grid renders the value as a string.
   // String: The name of a cell renderer component.
