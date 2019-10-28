@@ -58,7 +58,7 @@ export class GridComponent implements OnInit {
   getSelectedRows() {
     const selectedNodes: Array<RowNode> = this.gridApi.getSelectedNodes();
     const selectedData: Array<GridData> = _.map(selectedNodes, 'data');
-    const selectedDataStringPresentation: string = _.join(_.map(selectedData, (node: GridData) => node.date + ' ' + node.city + '. Status: ' + node.status), ' | ');
+    const selectedDataStringPresentation: string = _.join(_.map(selectedData, (node: GridData) => node.announceDate + ' ' + node.venueCity + '. Status: ' + node.itineraryStatus), ' | ');
     this.display$ = of(selectedDataStringPresentation);
   }
 
@@ -92,16 +92,16 @@ export class GridComponent implements OnInit {
 
     const nodeData = movingNode.data;
     const nodeHasData: boolean = this.nodeHasData(nodeData);
-    const nodeDate = nodeData[GridDataPropNames.date];
+    const nodeDate = nodeData[GridDataPropNames.itineraryDate];
     const nodeDateCount = _.size(_.filter(this.rowData, (row: GridData) => {
-      _.isEqual(row[GridDataPropNames.date], nodeDate);
+      _.isEqual(row[GridDataPropNames.itineraryDate], nodeDate);
     }));
 
     const overNodeData = overNode.data;
     const overNodeHasData: boolean = this.nodeHasData(overNodeData);
-    const overNodeDate = overNodeData[GridDataPropNames.date];
+    const overNodeDate = overNodeData[GridDataPropNames.itineraryDate];
     const overNodeDateCount = _.size(_.filter(this.rowData, (row: GridData) => {
-      _.isEqual(row[GridDataPropNames.date], overNodeDate);
+      _.isEqual(row[GridDataPropNames.itineraryDate], overNodeDate);
     }));
 
     const fromIndex = _.indexOf(this.rowData, nodeData);
@@ -110,11 +110,11 @@ export class GridComponent implements OnInit {
     this.moveInArray(newStore, fromIndex, toIndex);
     this.rowData = newStore;
     this.gridApi.setRowData(newStore);
-    movingNode.setDataValue(GridDataPropNames.date, overNode.data[GridDataPropNames.date]);
+    movingNode.setDataValue(GridDataPropNames.itineraryDate, overNode.data[GridDataPropNames.itineraryDate]);
   }
 
   private nodeHasData(data: GridData): boolean {
-    return !_.isEmpty(data.city);
+    return !_.isEmpty(data.venueCity);
   }
 
   private moveInArray(arr, fromIndex, toIndex) {

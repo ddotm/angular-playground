@@ -14,53 +14,38 @@ export class GridDataService {
     const existingData = [
       new GridData({
         id: 1,
-        date: new Date('2020-01-01:00:00:00'),
-        country: 'United States',
-        city: 'New York',
-        venue: 'Carnegie Hall',
-        capacity: 3000,
-        statusId: 1,
-        status: 'confirmed'
-      }),
-      new GridData({
-        id: 2,
-        date: new Date('2020-01-02:00:00:00'),
-        country: 'United States',
-        city: 'New York',
-        venue: 'Carnegie Hall',
-        capacity: 3000,
-        statusId: 3,
-        status: 'pending'
-      }),
-      new GridData({
-        id: 3,
-        date: new Date('2020-01-03:00:00:00'),
-        country: 'United States',
-        city: 'New York',
-        venue: 'Carnegie Hall',
-        capacity: 3000,
-        statusId: 3,
-        status: 'pending'
-      }),
-      new GridData({
-        id: 9,
-        date: new Date('2020-01-08:00:00:00'),
-        country: 'United States',
-        city: 'Los Angeles',
-        venue: 'The Greek Theater',
-        capacity: 5870,
-        statusId: 1,
-        status: 'confirmed'
-      }),
-      new GridData({
-        id: 10,
-        date: new Date('2020-01-14:00:00:00'),
-        country: 'United States',
-        city: 'Los Angeles',
-        venue: 'The Greek Theater',
-        capacity: 5870,
-        statusId: 2,
-        status: 'cancelled'
+        itineraryDate: new Date('2020-01-01:00:00:00'),
+        artistId: 15,
+        artistName: 'Martha Argerich',
+        showId: null,
+        itineraryStatusId: 1,
+        itineraryStatus: 'Confirmed',
+        venueId: 33443,
+        venueName: 'Carnegie Hall',
+        venueCity: 'New York',
+        venueState: 'NY',
+        venueCountry: 'USA',
+        sellableCapacity: 3000,
+        promoterId: 15,
+        promoterName: 'Fancy Pants',
+        promoterContactId: null,
+        promoterContactName: null,
+        guarantee: null,
+        currencyId: 1,
+        currency: 'USD',
+        ticketCurrencyId: 1,
+        ticketCurrency: 'USD',
+        showTypeId: null,
+        showType: null,
+        holdPosition: null,
+        ticketing: null,
+        billingId: null,
+        billing: null,
+        billingNote: null,
+        announceDate: null,
+        onSaleDate: null,
+        generalNote: null,
+        offerExpiryDate: null
       })
     ];
 
@@ -86,7 +71,9 @@ export class GridDataService {
       })) {
         gridData.push(new GridData({
           id: fakeId--,
-          date: date
+          itineraryDate: date,
+          artistId: 15,
+          itineraryStatusId: 0
         }));
       }
     }

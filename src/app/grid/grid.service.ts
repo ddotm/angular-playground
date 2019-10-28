@@ -57,9 +57,9 @@ export class GridService {
     const fieldProps = gridData.getFieldProps();
     const columnDefs: Array<IColumnDef> = [
       {
-        colId: GridDataPropNames.date,
+        colId: GridDataPropNames.itineraryDate,
         headerName: '',
-        field: GridDataPropNames.date,
+        field: GridDataPropNames.itineraryDate,
         sortable: false,
         filter: true,
         editable: false,
@@ -77,83 +77,92 @@ export class GridService {
         editable: false
       },
       {
-        colId: GridDataPropNames.country,
-        headerName: fieldProps[GridDataPropNames.country].label,
-        field: GridDataPropNames.country,
+        colId: GridDataPropNames.itineraryStatusId,
+        headerName: fieldProps[GridDataPropNames.itineraryStatusId].label,
+        field: GridDataPropNames.itineraryStatusId,
+        sortable: true,
+        filter: true,
+        editable: true,
+        cellRendererFramework: DropdownComponent
+      },
+      {
+        colId: GridDataPropNames.venueId,
+        headerName: fieldProps[GridDataPropNames.venueId].label,
+        field: GridDataPropNames.venueId,
         sortable: true,
         filter: true,
         editable: true
       },
       {
-        colId: GridDataPropNames.city,
-        headerName: fieldProps[GridDataPropNames.city].label,
-        field: GridDataPropNames.city,
+        colId: GridDataPropNames.venueName,
+        headerName: fieldProps[GridDataPropNames.venueName].label,
+        field: GridDataPropNames.venueName,
         sortable: true,
         filter: true,
         editable: true
       },
       {
-        colId: GridDataPropNames.venue,
-        headerName: fieldProps[GridDataPropNames.venue].label,
-        field: GridDataPropNames.venue,
+        colId: GridDataPropNames.venueCity,
+        headerName: fieldProps[GridDataPropNames.venueCity].label,
+        field: GridDataPropNames.venueCity,
         sortable: true,
         filter: true,
         editable: true
       },
       {
-        colId: GridDataPropNames.stage,
-        headerName: fieldProps[GridDataPropNames.stage].label,
-        field: GridDataPropNames.stage,
-        sortable: true,
-        filter: true,
-        editable: true
-      },
-      {
-        colId: GridDataPropNames.capacity,
-        headerName: fieldProps[GridDataPropNames.capacity].label,
+        colId: GridDataPropNames.venueState,
+        headerName: fieldProps[GridDataPropNames.venueState].label,
         width: 100,
-        field: GridDataPropNames.capacity,
+        field: GridDataPropNames.venueState,
         sortable: true,
         filter: true,
         editable: true
       },
       {
-        colId: GridDataPropNames.buildingCapability,
-        headerName: fieldProps[GridDataPropNames.buildingCapability].label,
+        colId: GridDataPropNames.venueCountry,
+        headerName: fieldProps[GridDataPropNames.venueCountry].label,
         width: 100,
-        field: GridDataPropNames.buildingCapability,
+        field: GridDataPropNames.venueCountry,
         sortable: true,
         filter: true,
         editable: true
       },
       {
-        colId: GridDataPropNames.artistFee,
-        headerName: fieldProps[GridDataPropNames.artistFee].label,
+        colId: GridDataPropNames.sellableCapacity,
+        headerName: fieldProps[GridDataPropNames.sellableCapacity].label,
         width: 100,
-        field: GridDataPropNames.artistFee,
+        field: GridDataPropNames.sellableCapacity,
         sortable: true,
         filter: true,
         editable: true
       },
       {
-        colId: GridDataPropNames.productionFee,
-        headerName: fieldProps[GridDataPropNames.productionFee].label,
+        colId: GridDataPropNames.promoterId,
+        headerName: fieldProps[GridDataPropNames.promoterId].label,
         width: 100,
-        field: GridDataPropNames.productionFee,
+        field: GridDataPropNames.promoterId,
         sortable: true,
         filter: true,
         editable: true
       },
       {
-        colId: GridDataPropNames.bonuses,
-        headerName: fieldProps[GridDataPropNames.bonuses].label,
+        colId: GridDataPropNames.promoterContactId,
+        headerName: fieldProps[GridDataPropNames.promoterContactId].label,
         width: 100,
-        field: GridDataPropNames.bonuses,
+        field: GridDataPropNames.promoterContactId,
+        sortable: true,
+        filter: true,
+        editable: true
+      },
+      {
+        colId: GridDataPropNames.guarantee,
+        headerName: fieldProps[GridDataPropNames.guarantee].label,
+        field: GridDataPropNames.guarantee,
         sortable: true,
         filter: true,
         editable: true,
         cellRenderer: (params): string => {
-          const bonusAmt: number = params.data[GridDataPropNames.bonuses] || 0;
+          const bonusAmt: number = params.data[GridDataPropNames.guarantee] || 0;
           if (bonusAmt === 0) {
             return `<span>---</span>`;
           }
@@ -163,13 +172,95 @@ export class GridService {
         }
       },
       {
-        colId: GridDataPropNames.statusId,
-        headerName: fieldProps[GridDataPropNames.statusId].label,
-        field: GridDataPropNames.statusId,
+        colId: GridDataPropNames.currencyId,
+        headerName: fieldProps[GridDataPropNames.currencyId].label,
+        field: GridDataPropNames.currencyId,
+        sortable: true,
+        filter: true,
+        editable: true
+      },
+      {
+        colId: GridDataPropNames.ticketCurrencyId,
+        headerName: fieldProps[GridDataPropNames.ticketCurrencyId].label,
+        field: GridDataPropNames.ticketCurrencyId,
+        sortable: true,
+        filter: true,
+        editable: true
+      },
+      {
+        colId: GridDataPropNames.showTypeId,
+        headerName: fieldProps[GridDataPropNames.showTypeId].label,
+        field: GridDataPropNames.showTypeId,
+        sortable: true,
+        filter: true,
+        editable: true
+      },
+      {
+        colId: GridDataPropNames.holdPosition,
+        headerName: fieldProps[GridDataPropNames.holdPosition].label,
+        field: GridDataPropNames.holdPosition,
+        sortable: true,
+        filter: true,
+        editable: true
+      },
+      {
+        colId: GridDataPropNames.ticketing,
+        headerName: fieldProps[GridDataPropNames.ticketing].label,
+        field: GridDataPropNames.ticketing,
+        sortable: true,
+        filter: true,
+        editable: true
+      },
+      {
+        colId: GridDataPropNames.billingId,
+        headerName: fieldProps[GridDataPropNames.billingId].label,
+        field: GridDataPropNames.billingId,
+        sortable: true,
+        filter: true,
+        editable: true
+      },
+      {
+        colId: GridDataPropNames.billingNote,
+        headerName: fieldProps[GridDataPropNames.billingNote].label,
+        field: GridDataPropNames.billingNote,
+        sortable: true,
+        filter: true,
+        editable: true
+      },
+      {
+        colId: GridDataPropNames.announceDate,
+        headerName: fieldProps[GridDataPropNames.announceDate].label,
+        field: GridDataPropNames.announceDate,
         sortable: true,
         filter: true,
         editable: true,
-        cellRendererFramework: DropdownComponent
+        valueFormatter: ColValueFormatters.dateValueFormatter
+      },
+      {
+        colId: GridDataPropNames.onSaleDate,
+        headerName: fieldProps[GridDataPropNames.onSaleDate].label,
+        field: GridDataPropNames.onSaleDate,
+        sortable: true,
+        filter: true,
+        editable: true,
+        valueFormatter: ColValueFormatters.dateValueFormatter
+      },
+      {
+        colId: GridDataPropNames.generalNote,
+        headerName: fieldProps[GridDataPropNames.generalNote].label,
+        field: GridDataPropNames.generalNote,
+        sortable: true,
+        filter: true,
+        editable: true
+      },
+      {
+        colId: GridDataPropNames.offerExpiryDate,
+        headerName: fieldProps[GridDataPropNames.offerExpiryDate].label,
+        field: GridDataPropNames.offerExpiryDate,
+        sortable: true,
+        filter: true,
+        editable: true,
+        valueFormatter: ColValueFormatters.dateValueFormatter
       }
     ];
 
