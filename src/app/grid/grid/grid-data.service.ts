@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import moment from 'moment';
 import {Injectable} from '@angular/core';
-import {GridData} from '../../models/grid-data';
+import {GridData, GridDataPropNames} from '../../models/grid-data';
 import {Observable, of} from 'rxjs';
 
 @Injectable({
@@ -59,7 +59,7 @@ export class GridDataService {
   private populateMonth(gridData: Array<GridData>, year: number, month: number): Array<GridData> {
     const daysInMonth = moment(`${year}-${month}`, 'YYYY-MM')
       .daysInMonth();
-    const daysWithData = _.map(gridData, 'date');
+    const daysWithData = _.map(gridData, GridDataPropNames.itineraryDate);
     console.log(daysWithData);
     const twoDigitMonth = month < 10 ? `0${month}` : `${month}`;
     let fakeId = -1;
