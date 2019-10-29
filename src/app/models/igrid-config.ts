@@ -1,4 +1,5 @@
 import {IColumnDef} from './icol-def';
+import {GetContextMenuItemsParams, MenuItemDef} from 'ag-grid-community';
 
 export interface IGridConfig {
   rowSelection: string;
@@ -14,4 +15,5 @@ export interface IGridConfig {
   enableRangeSelection?: boolean;
   suppressCopyRowsToClipboard?: boolean;
   singleClickEdit?: boolean;
+  getContextMenuItems: (menuItemsParams: GetContextMenuItemsParams) => Array<string | MenuItemDef>;
 }

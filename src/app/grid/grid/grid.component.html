@@ -26,6 +26,7 @@
                        [rowData]="grid.rowData"
                        [pinnedTopRowData]="grid.pinnedTopRowData"
                        [singleClickEdit]="grid.gridConfig.singleClickEdit"
+                       [getContextMenuItems]="grid.gridConfig.getContextMenuItems"
                        (gridReady)="onGridReady($event)"
                        (rowDragEnd)="rowDragEnd($event)"></ag-grid-angular>
     </div>

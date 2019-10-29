@@ -1,6 +1,7 @@
 import {RowSelection} from '../grid/enums/row-selection';
 import {IGridConfig} from './igrid-config';
 import {IColumnDef} from './icol-def';
+import {GetContextMenuItemsParams, MenuItemDef} from 'ag-grid-community';
 
 export class GridConfig implements IGridConfig {
   public rowSelection: string = RowSelection.multiple;
@@ -19,6 +20,30 @@ export class GridConfig implements IGridConfig {
 
   public singleClickEdit: boolean = false;
 
+  public getContextMenuItems: (menuItemsParams: GetContextMenuItemsParams) => Array<string | MenuItemDef> = this._getContextMenuItems;
+
   constructor() {
+  }
+
+  private _getContextMenuItems(menuItemsParams: GetContextMenuItemsParams): Array<string | MenuItemDef> {
+    return [
+      'copy',
+      'copyWithHeaders',
+      'resetColumns',
+      'separator',
+      'export',
+      'separator',
+      {
+        name: 'Pin row',
+        disabled: false,
+        action: () => {
+          console.log(menuItemsParams.node.data);
+        },
+        checked: false,
+        subMenu: null,
+        cssClasses: null,
+        tooltip: 'Click and the row shall be pinned to the top!'
+      }
+    ];
   }
 }
