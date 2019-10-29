@@ -56,6 +56,26 @@ export class GridDataService {
     return of(this.data);
   }
 
+  public getLookupValues(tableName: string): Observable<Array<{ id: number, name: string }>> {
+    switch (tableName) {
+      case 'itineraryStatus':
+        return of([
+          {id: 0, name: null},
+          {id: 1, name: 'Confirmed'},
+          {id: 2, name: 'Cancelled'},
+          {id: 3, name: 'Pending'},
+          {id: 4, name: 'Hold'}
+        ]);
+      case 'currency':
+        return of([
+          {id: 0, name: null},
+          {id: 1, name: 'USD'},
+          {id: 2, name: 'CAD'},
+          {id: 3, name: 'GBP'}
+        ]);
+    }
+  }
+
   private populateMonth(gridData: Array<GridData>, year: number, month: number): Array<GridData> {
     const daysInMonth = moment(`${year}-${month}`, 'YYYY-MM')
       .daysInMonth();

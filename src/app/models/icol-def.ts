@@ -22,4 +22,5 @@ export interface IColumnDef {
   // for custom renderers that are components
   // more info: https://www.ag-grid.com/javascript-grid-cell-rendering/angular.php
   cellRendererFramework?: any;
+  cellRendererParams?: any;
 }

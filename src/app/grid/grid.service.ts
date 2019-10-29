@@ -88,7 +88,7 @@ export class GridService {
         editable: false,
         pinned: 'left',
         lockPinned: true,
-        suppressMovable: true,
+        suppressMovable: true
       },
       {
         colId: GridDataPropNames.itineraryStatusId,
@@ -97,7 +97,10 @@ export class GridService {
         sortable: true,
         filter: true,
         editable: true,
-        cellRendererFramework: DropdownComponent
+        cellRendererFramework: DropdownComponent,
+        cellRendererParams: {
+          tableName: 'itineraryStatus'
+        }
       },
       {
         colId: GridDataPropNames.venueId,
@@ -191,7 +194,11 @@ export class GridService {
         field: GridDataPropNames.currencyId,
         sortable: true,
         filter: true,
-        editable: this.isEditable
+        editable: this.isEditable,
+        cellRendererFramework: DropdownComponent,
+        cellRendererParams: {
+          tableName: 'currency'
+        }
       },
       {
         colId: GridDataPropNames.ticketCurrencyId,
