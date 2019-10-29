@@ -2,8 +2,11 @@
 
   <div>{{display$ | async | json}}</div>
 
-  <button class="btn btn-primary"
+  <button class="btn btn-primary mr-1"
           (click)="getSelectedRows()">Get Selected Rows
+  </button>
+  <button class="btn btn-primary"
+          (click)="pinSelectedRows()">Pin Selected Rows
   </button>
   <div class="row">
 
@@ -21,13 +24,14 @@
                        [enableRangeSelection]="grid.gridConfig.enableRangeSelection"
                        [suppressCopyRowsToClipboard]="grid.gridConfig.suppressCopyRowsToClipboard"
                        [rowData]="grid.rowData"
+                       [pinnedTopRowData]="grid.pinnedTopRowData"
                        (gridReady)="onGridReady($event)"
                        (rowDragEnd)="rowDragEnd($event)"></ag-grid-angular>
     </div>
 
-<!--    <div class="col-1">-->
-<!--      <app-column-control [columnApi]="gridColumnApi$ | async"-->
-<!--                          [gridConfig]="grid.gridConfig"></app-column-control>-->
-<!--    </div>-->
+    <!--    <div class="col-1">-->
+    <!--      <app-column-control [columnApi]="gridColumnApi$ | async"-->
+    <!--                          [gridConfig]="grid.gridConfig"></app-column-control>-->
+    <!--    </div>-->
   </div>
 </div>

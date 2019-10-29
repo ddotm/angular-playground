@@ -22,13 +22,15 @@ export class GridComponent implements OnInit {
   private gridConfig: GridConfig = null;
   private gridConfigSubject: BehaviorSubject<GridConfig> = new BehaviorSubject<GridConfig>(null);
   public gridConfig$: Observable<GridConfig> = this.gridConfigSubject.asObservable();
-  public grid$: Observable<{ rowData: Array<GridData>, gridConfig: GridConfig }>;
+  public grid$: Observable<{ rowData: Array<GridData>, pinnedTopRowData: Array<GridData>, gridConfig: GridConfig }>;
 
-  public gridServiceData$: Observable<Array<GridData>>;
+  public gridData$: Observable<Array<GridData>>;
+  public gridPinnedData$: Observable<Array<GridData>>;
 
   public display$: Observable<string>;
 
-  private rowData: Array<GridData> = null;
+  private rowData: Array<GridData> = new Array<GridData>();
+  private pinnedTopRowData: Array<GridData> = new Array<GridData>();
 
   constructor(private gridDataService: GridDataService,
               private gridService: GridService) {
@@ -37,19 +39,23 @@ export class GridComponent implements OnInit {
   ngOnInit() {
     this.gridConfig = this.gridService.getGridConfig();
     this.gridConfigSubject.next(this.gridConfig);
-    this.gridServiceData$ = this.gridDataService.get();
+    this.gridData$ = this.gridDataService.get();
+    this.gridPinnedData$ = of(this.pinnedTopRowData);
     this.display$ = of('');
 
     this.grid$ = combineLatest([
-        this.gridServiceData$,
+        this.gridData$,
+      this.gridPinnedData$,
         this.gridConfig$
       ]
     )
       .pipe(
-        map(([rowData, gridConfig]) => {
+        map(([rowData, pinnedTopRowData, gridConfig]) => {
           this.rowData = rowData; // save the data locally
+          this.pinnedTopRowData = pinnedTopRowData;
           return {
             rowData,
+            pinnedTopRowData,
             gridConfig
           };
         }));
@@ -60,6 +66,14 @@ export class GridComponent implements OnInit {
     const selectedData: Array<GridData> = _.map(selectedNodes, 'data');
     const selectedDataStringPresentation: string = _.join(_.map(selectedData, (node: GridData) => node.announceDate + ' ' + node.venueCity + '. Status: ' + node.itineraryStatus), ' | ');
     this.display$ = of(selectedDataStringPresentation);
+  }
+
+  pinSelectedRows() {
+    const selectedNodes: Array<RowNode> = this.gridApi.getSelectedNodes();
+    this.gridApi.removeItems(selectedNodes);
+    const selectedData: Array<GridData> = _.map(selectedNodes, 'data');
+    this.pinnedTopRowData = _.concat(this.pinnedTopRowData, selectedData);
+    this.gridApi.setPinnedTopRowData(this.pinnedTopRowData);
   }
 
   public onGridReady(params) {
