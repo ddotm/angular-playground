@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
-import {ColumnApi} from 'ag-grid-community';
+import {ColumnApi, RowNode} from 'ag-grid-community';
 import {GridConfig} from '../models/grid-config';
 import {RowSelection} from './enums/row-selection';
 import {GridData, GridDataPropNames} from '../models/grid-data';
 import {IColumnDef} from '../models/icol-def';
 import {ColValueFormatters} from './col-value-formatters';
 import {DropdownComponent} from '../controls/dropdown/dropdown.component';
+import _ from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,13 @@ export class GridService {
 
   public setColumnVisible(columnApi: ColumnApi, colName: string, visible: boolean): void {
     columnApi.setColumnVisible(colName, visible);
+  }
+
+  public isEditable(rowNode: RowNode): boolean {
+    const myArtistIds: Array<number> = [15];
+    const isMyArtist: boolean = _.includes(myArtistIds, rowNode.data[GridDataPropNames.artistId]);
+    const isLocked: boolean = rowNode.data[GridDataPropNames.itineraryStatusId] === 2;
+    return isMyArtist && !isLocked;
   }
 
   public getGridConfig(): GridConfig {
@@ -96,7 +104,7 @@ export class GridService {
         field: GridDataPropNames.venueId,
         sortable: true,
         filter: true,
-        editable: true
+        editable: this.isEditable
       },
       {
         colId: GridDataPropNames.venueName,
@@ -104,7 +112,7 @@ export class GridService {
         field: GridDataPropNames.venueName,
         sortable: true,
         filter: true,
-        editable: true
+        editable: this.isEditable
       },
       {
         colId: GridDataPropNames.venueCity,
@@ -112,7 +120,7 @@ export class GridService {
         field: GridDataPropNames.venueCity,
         sortable: true,
         filter: true,
-        editable: true
+        editable: this.isEditable
       },
       {
         colId: GridDataPropNames.venueState,
@@ -121,7 +129,7 @@ export class GridService {
         field: GridDataPropNames.venueState,
         sortable: true,
         filter: true,
-        editable: true
+        editable: this.isEditable
       },
       {
         colId: GridDataPropNames.venueCountry,
@@ -130,7 +138,7 @@ export class GridService {
         field: GridDataPropNames.venueCountry,
         sortable: true,
         filter: true,
-        editable: true
+        editable: this.isEditable
       },
       {
         colId: GridDataPropNames.sellableCapacity,
@@ -139,7 +147,7 @@ export class GridService {
         field: GridDataPropNames.sellableCapacity,
         sortable: true,
         filter: true,
-        editable: true
+        editable: this.isEditable
       },
       {
         colId: GridDataPropNames.promoterId,
@@ -148,7 +156,7 @@ export class GridService {
         field: GridDataPropNames.promoterId,
         sortable: true,
         filter: true,
-        editable: true
+        editable: this.isEditable
       },
       {
         colId: GridDataPropNames.promoterContactId,
@@ -157,7 +165,7 @@ export class GridService {
         field: GridDataPropNames.promoterContactId,
         sortable: true,
         filter: true,
-        editable: true
+        editable: this.isEditable
       },
       {
         colId: GridDataPropNames.guarantee,
@@ -165,7 +173,7 @@ export class GridService {
         field: GridDataPropNames.guarantee,
         sortable: true,
         filter: true,
-        editable: true,
+        editable: this.isEditable,
         cellRenderer: (params): string => {
           const bonusAmt: number = params.data[GridDataPropNames.guarantee] || 0;
           if (bonusAmt === 0) {
@@ -182,7 +190,7 @@ export class GridService {
         field: GridDataPropNames.currencyId,
         sortable: true,
         filter: true,
-        editable: true
+        editable: this.isEditable
       },
       {
         colId: GridDataPropNames.ticketCurrencyId,
@@ -190,7 +198,7 @@ export class GridService {
         field: GridDataPropNames.ticketCurrencyId,
         sortable: true,
         filter: true,
-        editable: true
+        editable: this.isEditable
       },
       {
         colId: GridDataPropNames.showTypeId,
@@ -198,7 +206,7 @@ export class GridService {
         field: GridDataPropNames.showTypeId,
         sortable: true,
         filter: true,
-        editable: true
+        editable: this.isEditable
       },
       {
         colId: GridDataPropNames.holdPosition,
@@ -206,7 +214,7 @@ export class GridService {
         field: GridDataPropNames.holdPosition,
         sortable: true,
         filter: true,
-        editable: true
+        editable: this.isEditable
       },
       {
         colId: GridDataPropNames.ticketing,
@@ -214,7 +222,7 @@ export class GridService {
         field: GridDataPropNames.ticketing,
         sortable: true,
         filter: true,
-        editable: true
+        editable: this.isEditable
       },
       {
         colId: GridDataPropNames.billingId,
@@ -222,7 +230,7 @@ export class GridService {
         field: GridDataPropNames.billingId,
         sortable: true,
         filter: true,
-        editable: true
+        editable: this.isEditable
       },
       {
         colId: GridDataPropNames.billingNote,
@@ -230,7 +238,7 @@ export class GridService {
         field: GridDataPropNames.billingNote,
         sortable: true,
         filter: true,
-        editable: true
+        editable: this.isEditable
       },
       {
         colId: GridDataPropNames.announceDate,
@@ -238,7 +246,7 @@ export class GridService {
         field: GridDataPropNames.announceDate,
         sortable: true,
         filter: true,
-        editable: true,
+        editable: this.isEditable,
         valueFormatter: ColValueFormatters.dateValueFormatter
       },
       {
@@ -247,7 +255,7 @@ export class GridService {
         field: GridDataPropNames.onSaleDate,
         sortable: true,
         filter: true,
-        editable: true,
+        editable: this.isEditable,
         valueFormatter: ColValueFormatters.dateValueFormatter
       },
       {
@@ -256,7 +264,7 @@ export class GridService {
         field: GridDataPropNames.generalNote,
         sortable: true,
         filter: true,
-        editable: true
+        editable: this.isEditable
       },
       {
         colId: GridDataPropNames.offerExpiryDate,
@@ -264,7 +272,7 @@ export class GridService {
         field: GridDataPropNames.offerExpiryDate,
         sortable: true,
         filter: true,
-        editable: true,
+        editable: this.isEditable,
         valueFormatter: ColValueFormatters.dateValueFormatter
       }
     ];

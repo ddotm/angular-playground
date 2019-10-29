@@ -17,6 +17,8 @@ export class GridConfig implements IGridConfig {
   public enableRangeSelection?: boolean = true;
   public suppressCopyRowsToClipboard?: boolean = true;
 
+  public singleClickEdit: boolean = false;
+
   constructor() {
   }
 }

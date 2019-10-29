@@ -13,4 +13,5 @@ export interface IGridConfig {
   suppressClipboardPaste?: boolean;
   enableRangeSelection?: boolean;
   suppressCopyRowsToClipboard?: boolean;
+  singleClickEdit?: boolean;
 }

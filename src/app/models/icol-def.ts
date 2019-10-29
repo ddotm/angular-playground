@@ -1,4 +1,4 @@
-import {ValueGetterParams} from 'ag-grid-community';
+import {RowNode, ValueGetterParams} from 'ag-grid-community';
 
 export interface IColumnDef {
   colId: string;                // unique column identifier
@@ -8,7 +8,7 @@ export interface IColumnDef {
   sortable?: boolean;           // enable/disable sorting
   filter?: boolean;             // enable/disable filtering
   checkboxSelection?: boolean;  // enable/disable row selection
-  editable?: boolean;           // enable/disable editable cells
+  editable?: ((rowNode: RowNode) => boolean) | boolean;   // enable/disable editable cells
   rowDrag?: boolean;            // enable/disable row dragging
   pinned?: string;              // pins column, 'left' or 'right'
   lockPinned?: boolean;         // locks pinned setting on the UI

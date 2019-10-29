@@ -25,6 +25,7 @@
                        [suppressCopyRowsToClipboard]="grid.gridConfig.suppressCopyRowsToClipboard"
                        [rowData]="grid.rowData"
                        [pinnedTopRowData]="grid.pinnedTopRowData"
+                       [singleClickEdit]="grid.gridConfig.singleClickEdit"
                        (gridReady)="onGridReady($event)"
                        (rowDragEnd)="rowDragEnd($event)"></ag-grid-angular>
     </div>
